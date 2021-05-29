@@ -276,5 +276,27 @@ $ DEBUG=mylib:randomid node -r pino-debug index.js | npx pino-colada
 
 `pino-debug`は、`debug`を初めて使用する前に初期化すること。`-r`を使うのが簡単
 
+## CLI出力
+
+[chalk](https://github.com/chalk/chalk#readme)
+
+```shell
+$ npm i chalk
+$ npm ls
+├── chalk@4.1.1
+```
+
+```js
+// cli.js
+const chalk = require('chalk');
+console.log('%s hi there', chalk.cyan('INFO'));
+```
+
+```shell
+$ node cli.js
+INFO hi there // `INFO`に色が付いた
+$ CI=tue node cli.js
+INFO hi there // `INFO`に色がなくなった
+```
 
 
