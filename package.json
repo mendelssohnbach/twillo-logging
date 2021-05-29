@@ -15,6 +15,7 @@
     "pino": "^6.11.3"
   },
   "devDependencies": {
+    "debug": "^2.6.9",
     "pino-colada": "^2.1.0",
     "pino-pretty": "^5.0.1"
   }
