@@ -12,11 +12,13 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-pino-logger": "^6.0.0",
+    "ls": "^0.2.1",
     "pino": "^6.11.3"
   },
   "devDependencies": {
     "debug": "^2.6.9",
     "pino-colada": "^2.1.0",
+    "pino-debug": "^2.0.0",
     "pino-pretty": "^5.0.1"
   }
 }
