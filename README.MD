@@ -72,3 +72,19 @@ IncomingMessage {
   [Symbol(RequestTimeout)]: undefined
 }
 ```
+
+[pino](https://getpino.io/#/)
+
+> オーバーヘッドが非常に低い`Node.js`ロガー
+
+[express-pino-logger](https://github.com/pinojs/express-pino-logger#readme)
+
+> `pino`でログを記録する高速ミドルウェア。ちなみに、`express`なしでも動作します。
+
+```shell
+ $ npm i pino express-pino-logger
+ $ npm ls
+├── express-pino-logger@6.0.0
+├── express@4.17.1
+└── pino@6.11.3
+```
