@@ -278,6 +278,8 @@ $ DEBUG=mylib:randomid node -r pino-debug index.js | npx pino-colada
 
 ## CLI出力
 
+**CI/CD**環境で使うことを想定
+
 [chalk](https://github.com/chalk/chalk#readme)
 
 ```shell
@@ -299,4 +301,24 @@ $ CI=tue node cli.js
 INFO hi there // `INFO`に色がなくなった
 ```
 
+## TTYを使う
 
+`process.stdout.isTTY`の値がどのように変化するか観察
+
+```js
+const chalk = require('chalk');
+console.log(process.stdout.isTTY);
+console.log('%s Hi there', chalk.white.bgCyan('INFO'));
+```
+
+```shell
+$ node cli.js
+true
+INFO Hi there // `INFO`背景色有効、文字色白
+$ node cli.js > output.log // ファイルにリダイレクト
+$ cat output.log
+undefined // 値が変化
+INFO Hi there
+```
+
+`undefined`になるのはターミナルモードがオフになったから。

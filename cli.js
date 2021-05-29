@@ -1,2 +1,3 @@
 const chalk = require('chalk');
-console.log('%s hi there', chalk.cyan('INFO'));
+console.log(process.stdout.isTTY);
+console.log('%s Hi there', chalk.white.bgCyan('INFO'));
