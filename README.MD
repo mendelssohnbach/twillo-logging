@@ -73,6 +73,8 @@ IncomingMessage {
 }
 ```
 
+## Pinoを使ったロギング
+
 [pino](https://getpino.io/#/)
 
 > オーバーヘッドが非常に低い`Node.js`ロガー
@@ -88,3 +90,40 @@ IncomingMessage {
 ├── express@4.17.1
 └── pino@6.11.3
 ```
+
+```js
+// server.js
+const express = require('express');
+const pino = require('pino');
+const expressPino = require('express-pino-logger');
+
+// `logger`インスタンスを作成
+const logger = pino({ level: process.env.LOG_LEVEL || 'info' });
+// `express-pino-logger`に割当
+const expressLogger = expressPino({ logger });
+
+const PORT = process.env.PORT || 3000;
+const app = express();
+
+// 新しいロガーミドルウェアを作成
+app.use(expressLogger);
+
+app.get('/', (req, res) => {
+  // `logger.debug`をルートパスに追加
+  logger.debug('Calling res.send');
+  res.send('Hello World');
+});
+
+app.listen(PORT, () => {
+  logger.info('Server running on port %d', PORT);
+});
+```
+
+```shell
+$ node index.js
+{"level":30,"time":1622273252879,"pid":15177,"hostname":"tiger","msg":"Server running on port 3000"}
+{"level":30,"time":1622273256511,"pid":15177,"hostname":"tiger","req":{"id":1,"method":"GET","url":"/","headers":..."responseTime":13,"msg":"request completed"}
+```
+
+`JSON`データが出力された。
+
