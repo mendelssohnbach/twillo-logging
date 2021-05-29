@@ -260,7 +260,21 @@ $ DEBUG=mylib:randomid node index.js
 
 ブラウザ出力: `Hello World [ahxxdq64729]`
 
+`pinoログ`に記録する
 
+```shell
+$ npm i -D pino-debug
+$ npm ls
+├── pino-debug@2.0.0
+$ DEBUG=mylib:randomid node -r pino-debug index.js | npx pino-colada
+18:18:46 🐛 mylib:randomid Library loaded
+18:18:46 ✨ Server running on port 3000
+18:18:49 🐛 mylib:randomid Computing random ID
+18:18:49 🐛 mylib:randomid Random ID is rnfeyrg6due
+18:18:49 ✨ request completed GET 200 / 12ms
+```
+
+`pino-debug`は、`debug`を初めて使用する前に初期化すること。`-r`を使うのが簡単
 
 
 
