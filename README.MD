@@ -9,6 +9,8 @@ $ npm ls
 └── express@4.17.1
 ```
 
+## consoleによるロギング
+
 [util.format(format[, ...args])](https://nodejs.org/dist/latest-v14.x/docs/api/util.html)
 
 
@@ -121,9 +123,19 @@ app.listen(PORT, () => {
 
 ```shell
 $ node index.js
-{"level":30,"time":1622273252879,"pid":15177,"hostname":"tiger","msg":"Server running on port 3000"}
-{"level":30,"time":1622273256511,"pid":15177,"hostname":"tiger","req":{"id":1,"method":"GET","url":"/","headers":..."responseTime":13,"msg":"request completed"}
+{"level":30,"time":1622273674142,"pid":15506,"hostname":"tiger","msg":"Server running on port 3000"}
+...
 ```
 
 `JSON`データが出力された。
+
+ログレベルを変更
+
+```shell
+$ LOG_LEVEL=debug node index.js
+{"level":30,"time":1622273823101,"pid":15810,"hostname":"tiger","msg":"Server running on port 3000"}
+...
+```
+
+
 
