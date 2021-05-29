@@ -184,4 +184,25 @@ $ LOG_LEVEL=debug node index.js | npx pino-pretty
 
 重要な情報が色分けされた。
 
+### pino-colada
+
+`pino-colada`で遊ぶ
+
+[pino-colada](https://github.com/lrlna/pino-colada#readme)
+
+```shell
+$ npm i -D pino-colada
+$ npm ls
+twillo-logging@1.0.0 /home/yasuji/WorkSpace/twillo-logging
+├── express-pino-logger@6.0.0
+├── express@4.17.1
+├── pino-colada@2.1.0
+├── pino-pretty@5.0.1
+└── pino@6.11.3
+$ LOG_LEVEL=debug node index.js | npx pino-colada
+16:59:29 ✨ Server running on port 3000
+16:59:33 🐛 Calling res.send
+16:59:33 ✨ request completed GET 304 / 36ms
+```
+
 
