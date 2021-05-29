@@ -137,5 +137,51 @@ $ LOG_LEVEL=debug node index.js
 ...
 ```
 
+### transportsを使う
+
+`Pino`の標準出力形式を様々に変換。`pino-pretty`を使用して、より判別しやすいバージョンのログを作成。
+
+[pino-pretty](https://github.com/pinojs/pino-pretty#readme)
+
+> 基本的な`ndjson`フォーマッタを提供します。
+
+`ndjson`: 改行区切り`JSON`
+
+```shell
+$ npm i -D pino-pretty
+$ npm ls
+├── express-pino-logger@6.0.0
+├── express@4.17.1
+├── pino-pretty@5.0.1
+└── pino@6.11.3
+```
+
+```shell
+$ LOG_LEVEL=debug node index.js | npx pino-pretty
+[1622274547823] INFO (16587 on tiger): Server running on port 3000
+[1622274553038] DEBUG (16587 on tiger): Calling res.send
+[1622274553074] INFO (16587 on tiger): request completed
+    req: {
+      "id": 1,
+      "method": "GET",
+      "url": "/",
+      "headers": {
+        "host": "localhost:3000",
+        ...
+      },
+      "remoteAddress": "::1",
+      "remotePort": 50382
+    }
+    res: {
+      "statusCode": 304,
+      "headers": {
+        "x-powered-by": "Express",
+        "etag": "W/\"b-Ck1VqNd45QIvq3AZd8XYQLvEhtA\""
+      }
+    }
+    responseTime: 37
+```
+
+重要な情報が色分けされた。
 
 

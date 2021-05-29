@@ -13,5 +13,8 @@
     "express": "^4.17.1",
     "express-pino-logger": "^6.0.0",
     "pino": "^6.11.3"
+  },
+  "devDependencies": {
+    "pino-pretty": "^5.0.1"
   }
 }
