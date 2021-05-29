@@ -193,7 +193,6 @@ $ LOG_LEVEL=debug node index.js | npx pino-pretty
 ```shell
 $ npm i -D pino-colada
 $ npm ls
-twillo-logging@1.0.0 /home/yasuji/WorkSpace/twillo-logging
 ├── express-pino-logger@6.0.0
 ├── express@4.17.1
 ├── pino-colada@2.1.0
@@ -204,5 +203,64 @@ $ LOG_LEVEL=debug node index.js | npx pino-colada
 16:59:33 🐛 Calling res.send
 16:59:33 ✨ request completed GET 304 / 36ms
 ```
+
+## ライブラリのログ
+
+- ユーザー自身がログを有効化できるように構成する
+
+`express`の例
+
+```shell
+DEBUG=express:* node index.js
+  express:application set "x-powered-by" to true +0ms
+  express:application set "etag" to 'weak' +1ms
+  express:application set "etag fn" to [Function: generateETag] +1ms
+  ...
+  express:router:route get '/' +1ms
+  express:router:layer new '/' +0ms
+{"level":30,"time":1622275596910,"pid":17795,"hostname":"tiger","msg":"Server running on port 3000"}
+```
+
+[debug](https://github.com/visionmedia/debug#readme)
+
+> `Node.js`コアのデバッグ手法をモデルにした小さな`JavaScript`デバッグ ユーティリティ。
+
+指定した「名前空間」の内部でメッセージを書き込むことができる。
+
+```shell
+$ npm i -D debug
+$ npm ls
+├── debug@2.6.9
+├── express-pino-logger@6.0.0
+├── express@4.17.1
+├── pino-colada@2.1.0
+├── pino-pretty@5.0.1
+└── pino@6.11.3
+```
+
+```js
+// server.js
+...
+const randomId = require('./random-id');
+...
+  const id = randomId.getRandomId();
+  ...
+```
+
+```shell
+$ DEBUG=mylib:randomid node index.js
+  mylib:randomid Library loaded +0ms
+{"level":30,"time":1622276522358,"pid":18720,"hostname":"tiger","msg":"Server running on port 3000"}
+  mylib:randomid Computing random ID +5s
+  mylib:randomid Random ID is dof0lvkdg7r +2ms
+{"level":30,"time":1622276527145,"pid":18720,"hostname":"tiger","req":{"id":1,"method":"GET","url":"/","headers":{"host":"localhost:3000","connection":"keep-alive"
+...
+"responseTime":57,"msg":"request completed"}
+```
+
+ブラウザ出力: `Hello World [ahxxdq64729]`
+
+
+
 
 
